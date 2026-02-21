@@ -3,7 +3,7 @@ resource "aws_cloudfront_origin_access_control" "this" {
     description = "OAC for s3 private bucket"
     origin_access_control_origin_type = "s3"
     signing_behavior = "always"
-    signing_protocol = "signv4"
+    signing_protocol = "sigv4"
 }
 
 
