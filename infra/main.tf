@@ -5,7 +5,7 @@ module "s3" {
 
 module "cloudfront" {
     source = "./modules/cloudfront"
-    bucket_domain = module.s3.bucket_domain_name
+    bucket_domain_name = module.s3.bucket_domain
 }
 
 module "iam" {
