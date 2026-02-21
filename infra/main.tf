@@ -10,6 +10,8 @@ module "cloudfront" {
 
 module "iam" {
     source = "./modules/iam"
+    bucket_name = module.s3.bucket_name
+    distribution_id = module.cloudfront.distribution_id
     iam_user_name = var.iam_user_name
 }
 
