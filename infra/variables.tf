@@ -7,11 +7,11 @@ variable "bucket_name" {
     type = string
 }
 
-
-variable "cloudfront_name" {
+variable "iam_user_name" {
     type = string
 }
 
-variable "iam_user" {
+variable "dynamodb_table_name"{
     type = string
 }
+
