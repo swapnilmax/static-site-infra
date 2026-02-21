@@ -39,9 +39,11 @@ jobs:
           aws-region: ap-south-1
 
       - name: Terraform Init
+        working-directory: ./infra
         run: terraform init
 
       - name: Terraform Plan
+        working-directory: ./infra
         run: |
           terraform plan \
             -var="bucket_name=${{ github.event.inputs.bucket_name }}" \
