@@ -40,18 +40,23 @@ jobs:
 
       - name: Terraform Init
         working-directory: ./infra
-        run: terraform init
+        run: terraform init -input=false
+
+      - name: Terraform Validate
+        working-directory: ./infra
+        run: terraform validate
 
       - name: Terraform Plan
         working-directory: ./infra
         run: |
-          terraform plan \
+          terraform plan -input=false \
             -var="bucket_name=${{ github.event.inputs.bucket_name }}" \
             -var="cloudfront_name=${{ github.event.inputs.cloudfront_name }}" \
             -var="iam_user_name=${{ github.event.inputs.iam_user_name }}" \
             -var="dynamodb_table_name=${{ github.event.inputs.dynamodb_table_name }}"
 
       - name: Terraform Apply
+        working-directory: ./infra
         run: |
           terraform apply -auto-approve \
             -var="bucket_name=${{ github.event.inputs.bucket_name }}" \
