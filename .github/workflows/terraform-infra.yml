@@ -11,10 +11,6 @@ on:
         description: "IAM User name for deployment"
         required: true
         type: string
-      dynamodb_table_name:
-        description: "DynamoDB table name for Terraform lock"
-        required: true
-        type: string
 
 jobs:
   terraform:
@@ -48,5 +44,4 @@ jobs:
           terraform plan -input=false \
             -var="bucket_name=${{ github.event.inputs.bucket_name }}" \
             -var="iam_user_name=${{ github.event.inputs.iam_user_name }}" \
-            -var="dynamodb_table_name=${{ github.event.inputs.dynamodb_table_name }}"
 
