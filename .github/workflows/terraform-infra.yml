@@ -7,10 +7,6 @@ on:
         description: "S3 Bucket name for the website"
         required: true
         type: string
-      cloudfront_name:
-        description: "CloudFront Distribution Name"
-        required: true
-        type: string
       iam_user_name:
         description: "IAM User name for deployment"
         required: true
@@ -51,15 +47,6 @@ jobs:
         run: |
           terraform plan -input=false \
             -var="bucket_name=${{ github.event.inputs.bucket_name }}" \
-            -var="cloudfront_name=${{ github.event.inputs.cloudfront_name }}" \
             -var="iam_user_name=${{ github.event.inputs.iam_user_name }}" \
             -var="dynamodb_table_name=${{ github.event.inputs.dynamodb_table_name }}"
 
-      - name: Terraform Apply
-        working-directory: ./infra
-        run: |
-          terraform apply -auto-approve \
-            -var="bucket_name=${{ github.event.inputs.bucket_name }}" \
-            -var="cloudfront_name=${{ github.event.inputs.cloudfront_name }}" \
-            -var="iam_user_name=${{ github.event.inputs.iam_user_name }}" \
-            -var="dynamodb_table_name=${{ github.event.inputs.dynamodb_table_name }}"
