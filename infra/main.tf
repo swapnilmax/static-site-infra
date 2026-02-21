@@ -15,6 +15,3 @@ module "iam" {
     iam_user_name = var.iam_user_name
 }
 
-module "dynamodb" {
-    source = "./modules/dynamodb"
-}
