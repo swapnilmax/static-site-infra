@@ -13,7 +13,7 @@ resource "aws_cloudfront_distribution" "this" {
     default_root_object = "index.html"
 
     origin {
-        doamin_name = var.bucket_domain_name
+        domain_name = var.bucket_domain_name
         origin_id = "s3-origin"
 
         origin_access_control_id = aws_cloudfront_origin_access_control.this.id
