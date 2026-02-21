@@ -5,15 +5,15 @@ module "s3" {
 
 module "cloudfront" {
     source = "./modules/cloudfront"
-    distro_name = var.cloudfront_name
-    bucket_domain = module.s3.bucket_domain
+    bucket_domain = module.s3.bucket_domain_name
 }
 
 module "iam" {
     source = "./modules/iam"
-    iam_user = var.iam_user
+    iam_user_name = var.iam_user_name
 }
 
 module "dynamodb" {
     source = "./modules/dynamodb"
+    dynamodb_table_name = var
 }
