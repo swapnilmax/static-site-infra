@@ -19,7 +19,7 @@ resource "aws_cloudfront_distribution" "this" {
         origin_access_control_id = aws_cloudfront_origin_access_control.this.id
     }
 
-    default_cache_behaviour {
+    default_cache_behavior {
         target_origin_id = "s3-origin"
 
         viewer_protocol_policy = "redirect-to-https"
