@@ -49,3 +49,11 @@ jobs:
             -var="bucket_name=${{ github.event.inputs.bucket_name }}" \
             -var="iam_user_name=${{ github.event.inputs.iam_user_name }}" \
             -var="oac_name=${{ github.event.inputs.oac_name }}"
+
+      - name: Terraform Apply
+        working-directory: ./infra
+        run: |
+          terraform apply -auto-approve \
+            -var="bucket_name=${{ github.event.inputs.bucket_name }}" \
+            -var="iam_user_name=${{ github.event.inputs.iam_user_name }}" \
+            -var="oac_name=${{ github.event.inputs.oac_name }}"
