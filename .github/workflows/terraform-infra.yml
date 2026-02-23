@@ -11,6 +11,10 @@ on:
         description: "IAM User name for deployment"
         required: true
         type: string
+      oac_name:
+        description: "OAC name for CloudFront"
+        required: true
+        type: string
 
 jobs:
   terraform:
@@ -44,4 +48,4 @@ jobs:
           terraform plan -input=false \
             -var="bucket_name=${{ github.event.inputs.bucket_name }}" \
             -var="iam_user_name=${{ github.event.inputs.iam_user_name }}" \
-
+            -var="oac_name=${{ github.event.inputs.oac_name }}"
