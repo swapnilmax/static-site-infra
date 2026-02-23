@@ -7,3 +7,8 @@ output "distribution_domain" {
   description = "CloudFront distribution domain name"
   value       = aws_cloudfront_distribution.this.domain_name
 }
+
+output "distribution_arn" {
+  description = "Cloudfront distribution ARN"
+  value = aws_cloudfront_distribution.this.arn
+}

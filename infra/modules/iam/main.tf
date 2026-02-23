@@ -26,20 +26,8 @@ resource "aws_iam_policy" "actions_policy" {
           "arn:aws:s3:::${var.bucket_name}",
           "arn:aws:s3:::${var.bucket_name}/*"
         ]
-      },
-      {
-        # Allow CloudFront invalidation only for target distribution
-        Effect = "Allow"
-        Action = [
-          "cloudfront:CreateInvalidation"
-        ]
-        Resource = "arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/${var.distribution_id}"
       }
-    ]
-  })
-}
 
-data "aws_caller_identity" "current" {}
 
 resource "aws_iam_user_policy_attachment" "actions_attach" {
   user       = aws_iam_user.actions_user.name

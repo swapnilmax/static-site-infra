@@ -12,3 +12,6 @@ variable "iam_user_name" {
 }
 
 
+variable "oac_name" {
+    type = string
+}

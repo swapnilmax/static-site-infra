@@ -6,7 +6,6 @@ variable "bucket_domain_name" {
 variable "oac_name" {
     description = "Name for Cloudfront Origin Access Control"
     type = string
-    default = "s3-oac"
 }
 
 

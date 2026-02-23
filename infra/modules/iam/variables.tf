@@ -9,7 +9,3 @@ variable "bucket_name" {
 }
 
 
-variable "distribution_id" {
-    description = "ID of Cloudfront distribution for invalidation permissions"
-    type = string
-}
