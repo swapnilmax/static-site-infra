@@ -27,4 +27,35 @@ resource "aws_s3_bucket_versioning" "versioning" {
     versioning_configuration {
         status = "Enabled"
     }
+
+}
+
+#Bucket policy to allow cloudfront OAC
+resource "aws_s3_bucket_policy" "this" {
+    bucket = aws_s3_bucket.this.id
+    policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Service = "cloudfront.amazonaws.com"
+        }
+        Action   = ["s3:GetObject"]
+        Resource = "${aws_s3_bucket.this.arn}/*"
+        Condition = {
+          StringEquals = {
+            "AWS:SourceArn" = var.cloudfront_distribution_arn
+          }
+        }
+      }
+    ]
+  })
+}
+
+resource "aws_s3_object" "index" {
+    bucket = aws_s3_bucket.this.id
+    key          = "index.html"
+    content      = "<html><body><h1>Hello from Terraform!</h1></body></html>"
+    content_type = "text/html"
 }
