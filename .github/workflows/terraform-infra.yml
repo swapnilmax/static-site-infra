@@ -33,11 +33,11 @@ jobs:
       - name: Terraform Init
         working-directory: ./infra
         run: terraform init -input=false \
-               -backend-config="bucket=static-site-state-bucket-007" \
-               -backend-config="key=state/${{ github.event.inputs.bucket_name }}.tfstate" \
-               -backend-config="region=ap-south-1" \
-               -backend-config="encrypt=true" \
-               -backend-config="dynamodb_table=terraform-locks"
+          -backend-config="bucket=static-site-state-bucket-007" \
+          -backend-config="key=state/${{ github.event.inputs.bucket_name }}.tfstate" \
+          -backend-config="region=ap-south-1" \
+          -backend-config="encrypt=true" \
+          -backend-config="dynamodb_table=terraform-locks"
 
       - name: Terraform Validate
         working-directory: ./infra
@@ -48,11 +48,11 @@ jobs:
         run: |
           terraform plan -input=false \
             -var="bucket_name=${{ github.event.inputs.bucket_name }}" \
-            -var="iam_user_name=${{ github.event.inputs.iam_user_name }}" \
+            -var="iam_user_name=${{ github.event.inputs.iam_user_name }}"
 
       - name: Terraform Apply
         working-directory: ./infra
         run: |
           terraform apply -auto-approve \
             -var="bucket_name=${{ github.event.inputs.bucket_name }}" \
-            -var="iam_user_name=${{ github.event.inputs.iam_user_name }}" \
+            -var="iam_user_name=${{ github.event.inputs.iam_user_name }}"
