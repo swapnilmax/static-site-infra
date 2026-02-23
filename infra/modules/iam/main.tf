@@ -28,6 +28,11 @@ resource "aws_iam_policy" "actions_policy" {
         ]
       }
 
+    ]
+
+  }
+  )}
+
 
 resource "aws_iam_user_policy_attachment" "actions_attach" {
   user       = aws_iam_user.actions_user.name
