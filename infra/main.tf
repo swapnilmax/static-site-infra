@@ -6,7 +6,6 @@ module "s3" {
 
 module "cloudfront" {
     source = "./modules/cloudfront"
-    oac_name = var.oac_name
     bucket_domain_name = module.s3.bucket_domain
 }
 

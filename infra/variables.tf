@@ -10,8 +10,3 @@ variable "bucket_name" {
 variable "iam_user_name" {
     type = string
 }
-
-
-variable "oac_name" {
-    type = string
-}

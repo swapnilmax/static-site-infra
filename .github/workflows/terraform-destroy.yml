@@ -1,4 +1,4 @@
-name: "Terraform Infra Deployment"
+name: "Terraform Infra Destroy"
 
 on:
   workflow_dispatch:
@@ -13,9 +13,8 @@ on:
         type: string
 
 jobs:
-  terraform:
+  terraform-destroy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -39,20 +38,9 @@ jobs:
                -backend-config="encrypt=true" \
                -backend-config="dynamodb_table=terraform-locks"
 
-      - name: Terraform Validate
-        working-directory: ./infra
-        run: terraform validate
-
-      - name: Terraform Plan
+      - name: Terraform Destroy
         working-directory: ./infra
         run: |
-          terraform plan -input=false \
+          terraform destroy -auto-approve \
             -var="bucket_name=${{ github.event.inputs.bucket_name }}" \
-            -var="iam_user_name=${{ github.event.inputs.iam_user_name }}" \
-
-      - name: Terraform Apply
-        working-directory: ./infra
-        run: |
-          terraform apply -auto-approve \
-            -var="bucket_name=${{ github.event.inputs.bucket_name }}" \
-            -var="iam_user_name=${{ github.event.inputs.iam_user_name }}" \
+            -var="iam_user_name=${{ github.event.inputs.iam_user_name }}"
