@@ -32,12 +32,13 @@ jobs:
 
       - name: Terraform Init
         working-directory: ./infra
-        run: terraform init -input=false \
-          -backend-config="bucket=static-site-state-bucket-007" \
-          -backend-config="key=state/${{ github.event.inputs.bucket_name }}.tfstate" \
-          -backend-config="region=ap-south-1" \
-          -backend-config="encrypt=true" \
-          -backend-config="dynamodb_table=terraform-locks"
+        run: |
+          terraform init -input=false \
+            -backend-config="bucket=static-site-state-bucket-007" \
+            -backend-config="key=state/${{ github.event.inputs.bucket_name }}.tfstate" \
+            -backend-config="region=ap-south-1" \
+            -backend-config="encrypt=true" \
+            -backend-config="dynamodb_table=terraform-locks"
 
       - name: Terraform Validate
         working-directory: ./infra
