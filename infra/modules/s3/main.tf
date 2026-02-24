@@ -52,10 +52,3 @@ resource "aws_s3_bucket_policy" "this" {
     ]
   })
 }
-
-resource "aws_s3_object" "index" {
-    bucket = aws_s3_bucket.this.id
-    key          = "index.html"
-    content      = "<html><body><h1>Hello from Terraform!</h1></body></html>"
-    content_type = "text/html"
-}
